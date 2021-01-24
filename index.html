@@ -5,35 +5,59 @@
   <meta charset="utf-8">
   <title>Etch a Sketch</title>
   <style>
-  .container {   
-    height: 85vh;
-    width: 99%;
-    position: absolute;
+
+
+    .body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container-wrapper{
+        height: 70vw;
+        width: 70vw;
+        margin: 20px auto;
+        position: relative;
+
+    }
+
+    .container {   
+    height: 85%;
+    width: 85%;
+    position: relative;
     margin: auto;
+    border-radius: 3px;
    
   }
 
   .buttons {
       justify:center;
-      margin-top: 10px;
-      margin-bottom: 20px;
       text-align: center;
-      height:40px;
+      height:30px;
+      width:
+      position: relative;
+      margin-bottom: 6px;
+      
 
   }
 
   </style>
 </head>
-<body>
-    <div class='buttons'>
-        <button id='reset' class='buttons'>Reset</button>
-        <button id='pixelSize' class='buttons'>Size</button>
-        <button id='blackBackground' class='buttons'>Black</button>
-        <button id='rainbowBackground' class='buttons'>Rainbow</button>
-        <button id='randomBackground' class='buttons'>Random</button>
-        <button id='eraser' class='buttons'>Eraser</button>
+<body class='body'>
+    <h2>ETCH A SKETCH</h2>
+    <div id='contWrapper' class='container-wrapper'>
+        <div class='buttons'>
+            <button id='reset' class='buttons'>Reset</button>
+            <button id='pixelSize' class='buttons'>Size</button>
+            <button id='blackBackground' class='buttons'>Black</button>
+            <button id='rainbowBackground' class='buttons'>Rainbow</button>
+            <button id='randomBackground' class='buttons'>Random</button>
+            <button id='eraser' class='buttons'>Eraser</button>
+        </div>
+        <div class='container' id='cont'></div>
     </div>
-    <div class='container' id='cont'></div>
 </body>
 <script>
 
