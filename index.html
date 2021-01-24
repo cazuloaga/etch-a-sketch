@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+  <meta charset="utf-8">
+  <title>Etch a Sketch</title>
+  <style>
+  .container {   
+    height: 85vh;
+    width: 99%;
+    position: absolute;
+    margin: auto;
+   
+  }
+
+  .buttons {
+      justify:center;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      height:40px;
+
+  }
+
+  </style>
+</head>
+
+//Creating all buttons
+<body>
+    <div class='buttons'>
+        <button id='reset' class='buttons'>Reset</button>
+        <button id='pixelSize' class='buttons'>Size</button>
+        <button id='blackBackground' class='buttons'>Black</button>
+        <button id='rainbowBackground' class='buttons'>Rainbow</button>
+        <button id='randomBackground' class='buttons'>Random</button>
+        <button id='eraser' class='buttons'>Eraser</button>
+    </div>
+    <div class='container' id='cont'></div>
+</body>
+<script>
+
+// Defining all variables and creating first grid of 16x16 pixels.
+    const resBtn=document.querySelector('#reset');
+    const blackBtn=document.querySelector('#blackBackground');
+    const rainbowBtn=document.querySelector('#rainbowBackground');
+    const sizeBtn=document.querySelector('#pixelSize');
+    const eraserBtn=document.querySelector('#eraser');
+    const randomBtn=document.querySelector('#randomBackground');
+    let cont=document.querySelector('#cont');
+    cont.style.display='grid';
+    let squares=cont.childNodes;
+    let size=16;
+    let color='black'
+    cont.style.gridTemplateColumns=`repeat(${size},1fr)`;
+    cont.style.gridTemplateRows=`repeat(${size},1fr)`;
+    cont.style.border='1px solid black';
+
+    for (i=1;i<=size**2;i++){
+    let div=document.createElement('div');
+    div.style.height=`1fr`
+    div.style.width=`1fr`
+    cont.appendChild(div);
+    }
+
+    squares.forEach((div)=>{
+        div.addEventListener('mouseenter', ()=>{
+            div.style.background=color;
+            });
+        });
+
+//Added event listeners for all the buttons to change size, color fill and reset.
+    sizeBtn.addEventListener('click',()=>{
+        size=prompt('Select how many pixels per row and columns','Choose between 10 and 100');        
+            if(size>=10 && size<=100){
+                cont.style.gridTemplateColumns=`repeat(${size},1fr)`;
+                cont.style.gridTemplateRows=`repeat(${size},1fr)`;
+
+                for (i=1;i<=size**2;i++){
+                div=document.createElement('div');
+                div.style.height='1fr'
+                div.style.width='1fr'
+                div.style.color='white'
+                cont.appendChild(div);
+                }
+                squares.forEach((div)=>{
+                    div.style.background='white';
+                    div.addEventListener('mouseenter',()=>{
+                        div.style.background='black';
+                    });
+                });
+
+
+            }else{
+                alert('Invalid input. Must be a number between 10 and 100')
+            }
+            
+        
+    });
+
+    
+
+    blackBtn.addEventListener('click',()=>{
+        color='black';
+        squares.forEach((div)=>{
+        div.addEventListener('mouseenter', ()=>{
+            div.style.background=color;
+            });
+        });
+    });
+
+    rainbowBtn.addEventListener('click',()=>{
+        squares.forEach((div)=>{
+        div.addEventListener('mouseenter', ()=>{
+            div.style.background='#'+Math.floor(Math.random()*16777215).toString(16);
+            });
+        });
+    });
+
+    randomBtn.addEventListener('click',()=>{
+        color='#'+Math.floor(Math.random()*16777215).toString(16);
+        squares.forEach((div)=>{
+        div.addEventListener('mouseenter', ()=>{
+            div.style.background=color;
+            });
+        });
+    });
+
+    resBtn.addEventListener('click',()=>{
+        cont.style.gridTemplateColumns=`repeat(${size},1fr)`;
+        cont.style.gridTemplateRows=`repeat(${size},1fr)`;
+
+        for (i=1;i<=size**2;i++){
+                div=document.createElement('div');
+                div.style.height='1fr'
+                div.style.width='1fr'
+                div.style.color='white'
+                cont.appendChild(div);
+                }
+                squares.forEach((div)=>{
+                    div.style.background='white';
+                    div.addEventListener('mouseenter',()=>{
+                        div.style.background='black';
+                    });
+                });
+
+        })
+
+    eraserBtn.addEventListener('click',()=>{
+        color='white';
+        squares.forEach((div)=>{
+        div.addEventListener('mouseenter', ()=>{
+            div.style.background=color;
+            });
+        });
+    });
+  
+</script>
+</html>
